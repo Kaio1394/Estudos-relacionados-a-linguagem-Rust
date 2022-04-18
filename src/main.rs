@@ -1,9 +1,10 @@
 mod archive;
-use rand::Rng;
+use rand::{Rng, thread_rng};
+use rand::{distributions::Alphanumeric};
 use crate::archive::arch::archive_file;
 fn main() {
     // Aplicando importação de funções de arquivos externos
-    let mut nome: String = String::from("Kaio");
+    let nome: String = String::from("Kaio");
     archive_file(nome);
 
     // Acessando funções dentro de um módulo. 
@@ -18,6 +19,14 @@ fn main() {
     println!("{}", a);
     // Setando um range para o número randômico. Tanto inteiro quanto float
     println!("{}", rng.gen_range(0.0..100.0));
+
+    // Gerando uma string randômica
+    let rand_string: String = thread_rng()
+        .sample_iter(&Alphanumeric)
+        .take(2)
+        .map(char::from)
+        .collect();
+    println!("{}", rand_string);
 }
 pub mod teste1{
     pub mod teste2{
