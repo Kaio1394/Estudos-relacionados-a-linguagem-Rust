@@ -1,3 +1,7 @@
+mod func;
+use crate::func::update::{update_colors, change_string};
+
+#[allow(unused_assignments)]
 fn main() {
     // setando o tipo do array e o tamanho
     // não pode ser adicionado novos elementos em um arrays
@@ -35,5 +39,16 @@ fn main() {
     let array_teste = [0, 1, 2, 3, 4, 5, 6];
     let slice_array = &array_teste[0..3];
     println!("{:?}", slice_array);
+
+    let mut colors = ["red", "green", "blue", "pink"];
+    println!("{:?}", colors);
+    update_colors(&mut colors[2..4]);
+    println!("{:?}", colors); 
     
+    // Mudando um valor referenciado na memória usando o operador "*"
+    let mut nome = "kaio";
+    println!("{}", nome);
+    change_string(&mut nome);
+    println!("{}", nome);
+
 }
