@@ -1,5 +1,7 @@
-mod func;
-use crate::func::update::{update_colors, change_string};
+mod func_update;
+mod struct_job;
+use crate::struct_job::job::Employee;
+use crate::func_update::update::{update_colors, change_string};
 
 #[allow(unused_assignments)]
 fn main() {
@@ -60,4 +62,15 @@ fn main() {
     // Nomeando os elementos da tupla
     let (name, age, employment) = person;
     println!("{}, {}, {}", name, age, employment);
+
+    // Struct
+    let kaio = Employee{
+        name: String::from("Kaio"),
+        company: String::from("Vericode"),
+        age: 27
+    };
+
+    println!("{:?}", kaio);
 }
+
+
