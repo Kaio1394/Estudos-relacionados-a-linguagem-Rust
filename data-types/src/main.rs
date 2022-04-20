@@ -1,6 +1,10 @@
 mod func_update;
 mod struct_job;
+mod enums;
+mod generic;
+use crate::enums::{Colors, ColorsGeneric};
 use crate::struct_job::job::Employee;
+use crate::generic::Generic::{Point, PointMultiple, PointNMultiple};
 use crate::func_update::update::{update_colors, change_string};
 
 #[allow(unused_assignments)]
@@ -63,14 +67,37 @@ fn main() {
     let (name, age, employment) = person;
     println!("{}, {}, {}", name, age, employment);
 
-    // Struct
-    let kaio = Employee{
+    // Struct e impl
+    let kaio: Employee = Employee{
         name: String::from("Kaio"),
         company: String::from("Vericode"),
         age: 27
     };
     println!("{}", kaio.fn_details());
+    // Método estático não recebe o parâmetro &self
+    println!("{}", Employee::static_fn_detail());
     
-}
+    // Acessando um enum
+    let my_color = Colors::Red;
+    println!("{:?}", my_color); 
 
+    // Genérico
+    let p1: Point<i32> = Point {x: 6, y: 10};
+    let p2: Point<f32> = Point {x: 50.2, y: 10.2};
+    println!("{}", p1.x);
+    println!("{}", p2.x);
+    // Enum genérico
+    let c1 = ColorsGeneric::Black(String::from("#4FG2A"));
+    println!("{:?}", c1);
+    // múltiplos genéricos
+    let p_multiplo: PointMultiple<i32, String> =  PointMultiple {
+        x: 20, 
+        y: String::from("Kaio")
+    };
+    let p_n_multiplo: PointNMultiple<u32, u32, u32> = PointNMultiple {
+        x: 13,
+        y: 27,
+        c: 10
+    };
+}
 
