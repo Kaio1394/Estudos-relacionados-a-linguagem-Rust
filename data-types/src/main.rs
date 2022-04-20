@@ -69,8 +69,8 @@ fn main() {
         company: String::from("Vericode"),
         age: 27
     };
-
-    println!("{:?}", kaio);
+    println!("{}", kaio.fn_details());
+    
 }
 
 
