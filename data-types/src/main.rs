@@ -51,4 +51,13 @@ fn main() {
     change_string(&mut nome);
     println!("{}", nome);
 
+    // Tuplas
+    // Não pode adicionar e nem remover elementos
+    let mut person: (&str, u64, bool) = ("Kaio", 27, true);
+    // Imprimindo índice
+    person.0 = "Yuri";
+    println!("{}", person.0);
+    // Nomeando os elementos da tupla
+    let (name, age, employment) = person;
+    println!("{}, {}, {}", name, age, employment);
 }
