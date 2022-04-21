@@ -1,4 +1,4 @@
-/target/debug/deps
+/target
 Cargo.lock
 .vscode/
 **/Makefile
