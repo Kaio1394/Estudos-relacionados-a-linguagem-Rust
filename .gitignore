@@ -1,2 +1,3 @@
-data-types/target/debug/*
-control-structures/target/debug/*
+/target
+Cargo.lock
+.vscode/
