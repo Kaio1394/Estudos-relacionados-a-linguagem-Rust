@@ -61,6 +61,10 @@ fn main(){
         println!("R: {}", R);
     }
 
+    // Funções anônimas
+    let a = |a: i32, b: i32| -> i32 {a + b};
+    println!("{}", a(1, 2));
+
 }
 
 
