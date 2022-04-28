@@ -1,14 +1,15 @@
 mod condicional;
 mod enumarate;
+mod loops;
 #[allow(unused_imports)]
-use crate::enumarate::enum_teste::Suit::Heart;
+use crate::loops::loop_test::{get_square, get_squareLoop};
 use rand::{Rng, thread_rng};
 use crate::enumarate::enum_teste::{print_choice, Suit, country, get_oranges};
 use crate::condicional::condic::{verifica_numero, verifica_numero_menos_linha_codigo};
 
 fn main(){
     // Condicional "if"
-    let mut rng = rand::thread_rng();
+    let mut rng = thread_rng();
     let number = rng.gen_range(0..10);
     println!("{}", verifica_numero(number));
     println!("{}", verifica_numero_menos_linha_codigo(number));  
@@ -33,6 +34,26 @@ fn main(){
     for elem in 1..10 {
         println!("{}", elem);
     }
+
+    let pets = ["dog", "cat", "hamster"];
+    for elem in pets.iter() {
+        if elem == &"cat"{
+            println!("Achou o {}", elem);
+            continue;
+        }
+        println!("I love my {}", elem);
+    }
+
+    for(pos, i) in (1..11).enumerate(){
+        let square = i * i;
+        let number = pos + 1;
+        println!("{0} * {0} = {1}", number, square);
+    }
+
+    get_square(3151);
+    get_squareLoop(3151);
 }
+
+
 
 
