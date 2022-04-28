@@ -7,6 +7,9 @@ use rand::{Rng, thread_rng};
 use crate::enumarate::enum_teste::{print_choice, Suit, country, get_oranges};
 use crate::condicional::condic::{verifica_numero, verifica_numero_menos_linha_codigo};
 
+// Variável global
+static mut R: i32 = 0;
+
 fn main(){
     // Condicional "if"
     let mut rng = thread_rng();
@@ -52,7 +55,14 @@ fn main(){
 
     get_square(3151);
     get_squareLoop(3151);
+
+    unsafe{
+        R = 10;
+        println!("R: {}", R);
+    }
+
 }
+
 
 
 
