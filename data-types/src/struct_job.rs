@@ -10,7 +10,7 @@ pub mod job{
     impl Employee{
         pub fn fn_details(&self) -> String{
             return format!("name: {}, company: {}, age:{},", 
-                self.name, self.company, self.age)
+                self.name, self.company, self.age);
         }
         // Método estático
         pub fn static_fn_detail() -> String{

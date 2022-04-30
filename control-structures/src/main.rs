@@ -35,7 +35,7 @@ fn main(){
 
     //loop
     for elem in 1..10 {
-        println!("{}", elem);
+        println!("Sum = {}", elem);
     }
 
     let pets = ["dog", "cat", "hamster"];
@@ -56,18 +56,84 @@ fn main(){
     get_square(3151);
     get_squareLoop(3151);
 
+    // Usando a variável global
     unsafe{
         R = 10;
         println!("R: {}", R);
     }
 
     // Funções anônimas
-    let a = |a: i32, b: i32| -> i32 {a + b};
+    let a = |a: i32, b: i32| -> i32 {
+        return a + b
+    };
     println!("{}", a(1, 2));
 
+    let b = |x: i32| {println!("{}", x)};
+    b(10);
+
+    // 1: Somar todos valores de isq < limit, desde que isq seja um número par
+    let limit = 200;
+    let mut sum = 0;
+    
+    for i in 0..{
+        let isq = i * i;
+        if isq > limit {break;}
+        else{
+            if is_even(isq){
+                sum += isq;
+            }
+        }
+        println!("{0} * {0} = {1}", i, i * i);
+    }
+    println!("Sum = {}", sum);
+    
+    // 2: Outra forma de resolver
+    let sum1 = (0..)
+                .map(|x| x * x)
+                .take_while(|&x| x <= limit)
+                .filter(|x| is_even(*x))
+                .fold(0, |sum, x| sum + x);
+    
+    println!("Sum1: {}", sum1);
+
+
+    let mut x = 0;
+    loop {
+        let isq = x * x;
+        if isq > limit {break;}
+        else{
+            if is_even(x){
+                sum += isq;
+            }
+            x += 1;
+        }
+    }
+    println!("Sum = {}", sum);
+
+    // let mult = 
+    //                 |a: &mut i32, b: &mut i32| &a * &b;
+    // let mut number1: i32 = 1;
+    // let mut number2: i32 = 1;
+    //apply(mult, &mut number1, &mut number2);
+
+
+}
+fn is_even(x: i32) -> bool{
+    x % 2 == 0
 }
 
-
-
+fn apply(f: fn(&mut i32, &mut i32) -> i32, 
+                a: &mut i32, 
+                b: &mut i32){
+    loop{
+        if f(a, b) < 500 {
+            break;
+        }else {
+            println!("F: {}, a: {}, b: {}", f(a, b), &a, &b);
+            *a += 1;
+            *b += 1;
+        }
+    }
+}
 
 
