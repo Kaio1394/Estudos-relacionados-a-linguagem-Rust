@@ -7,6 +7,24 @@ use rand::{Rng, thread_rng};
 use crate::enumarate::enum_teste::{print_choice, Suit, country, get_oranges};
 use crate::condicional::condic::{verifica_numero, verifica_numero_menos_linha_codigo};
 
+// Macro
+macro_rules! name {
+    ($name: expr) => (
+        println!("My name is {}", $name);
+    );
+}
+
+macro_rules! name {
+    ($($name: expr), *) => { 
+        $(println!("Hey {}", $name);)*
+    };
+}
+// macro com variáveis
+macro_rules! xy {
+    (x => $e: expr) => {println!("X is {}", $e);};
+    (y => $e: expr) => {println!("Y is {}", $e);};
+}
+
 // Variável global
 static mut R: i32 = 0;
 
@@ -117,10 +135,16 @@ fn main(){
     //apply(mult, &mut number1, &mut number2);
 
 
+    // Usando o macro
+    name!("Kaio");
+    xy!(x => 5);
+    xy!(y => "Kaio");
 }
 fn is_even(x: i32) -> bool{
     x % 2 == 0
 }
+
+
 
 fn apply(f: fn(&mut i32, &mut i32) -> i32, 
                 a: &mut i32, 

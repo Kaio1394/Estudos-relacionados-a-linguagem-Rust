@@ -99,6 +99,8 @@ fn main() {
         y: 27,
         c: 10
     };
+    println!("{}", p_n_multiplo.x);
+    println!("{}", Employee::static_fn_detail());
     
 }
 
