@@ -8,12 +8,14 @@ use crate::enumarate::enum_teste::{print_choice, Suit, country, get_oranges};
 use crate::condicional::condic::{verifica_numero, verifica_numero_menos_linha_codigo};
 
 // Macro
+// Em macros podemos ter tipos de parâmetro: 
+// expr, ident, block, stmt, pat, path, meta, ty e tt
 macro_rules! name {
     ($name: expr) => (
         println!("My name is {}", $name);
     );
 }
-
+// macro com vários parâmetros
 macro_rules! name {
     ($($name: expr), *) => { 
         $(println!("Hey {}", $name);)*
@@ -23,6 +25,14 @@ macro_rules! name {
 macro_rules! xy {
     (x => $e: expr) => {println!("X is {}", $e);};
     (y => $e: expr) => {println!("Y is {}", $e);};
+}
+// macro que constroi uma função
+macro_rules! build_fn {
+    ($fn_name: ident) => {
+        fn $fn_name(){
+            println!("{:?} this function was called", stringify!($fn_name));
+        }
+    };
 }
 
 // Variável global
@@ -139,6 +149,8 @@ fn main(){
     name!("Kaio");
     xy!(x => 5);
     xy!(y => "Kaio");
+    build_fn!(hey);
+    hey();
 }
 fn is_even(x: i32) -> bool{
     x % 2 == 0
