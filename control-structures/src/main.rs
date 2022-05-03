@@ -7,33 +7,6 @@ use rand::{Rng, thread_rng};
 use crate::enumarate::enum_teste::{print_choice, Suit, country, get_oranges};
 use crate::condicional::condic::{verifica_numero, verifica_numero_menos_linha_codigo};
 
-// Macro
-// Em macros podemos ter tipos de parâmetro: 
-// expr, ident, block, stmt, pat, path, meta, ty e tt
-macro_rules! name {
-    ($name: expr) => (
-        println!("My name is {}", $name);
-    );
-}
-// macro com vários parâmetros
-macro_rules! name {
-    ($($name: expr), *) => { 
-        $(println!("Hey {}", $name);)*
-    };
-}
-// macro com variáveis
-macro_rules! xy {
-    (x => $e: expr) => {println!("X is {}", $e);};
-    (y => $e: expr) => {println!("Y is {}", $e);};
-}
-// macro que constroi uma função
-macro_rules! build_fn {
-    ($fn_name: ident) => {
-        fn $fn_name(){
-            println!("{:?} this function was called", stringify!($fn_name));
-        }
-    };
-}
 
 // Variável global
 static mut R: i32 = 0;
@@ -142,21 +115,11 @@ fn main(){
     //                 |a: &mut i32, b: &mut i32| &a * &b;
     // let mut number1: i32 = 1;
     // let mut number2: i32 = 1;
-    //apply(mult, &mut number1, &mut number2);
-
-
-    // Usando o macro
-    name!("Kaio");
-    xy!(x => 5);
-    xy!(y => "Kaio");
-    build_fn!(hey);
-    hey();
+    //apply(mult, &mut number1, &mut number2);   
 }
 fn is_even(x: i32) -> bool{
     x % 2 == 0
 }
-
-
 
 fn apply(f: fn(&mut i32, &mut i32) -> i32, 
                 a: &mut i32, 
