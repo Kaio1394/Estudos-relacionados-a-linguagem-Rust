@@ -1,5 +1,9 @@
 #[allow(unused_imports)]
-
+mod dev_impl;
+mod animais;
+use crate::animais::*;
+use crate::animais::animal::*;
+use crate::dev_impl::dev::*;
 // Macro
 // Em macros podemos ter tipos de parâmetro: 
 // expr, ident, block, stmt, pat, path, meta, ty e tt
@@ -28,39 +32,28 @@ macro_rules! build_fn {
     };
 }
 
-struct RustDev{
-    awesome: bool
+// Implementando uma função com o retoro de uma trait através do Box<dyn ...>
+struct Papagaio{}
+struct Cobra{}
+trait Animal_2{
+    fn fazer_barulho(&self) -> &'static str;
 }
-struct JavaDev{
-    awsome: bool
+impl Animal_2 for Papagaio{
+    fn fazer_barulho(&self) -> &'static str {
+        todo!()
+    }
 }
-pub trait Developer{
-    fn new(awesome: bool) -> Self;
-    fn language(&self) -> &str;
-    fn say_hellow(&self){println!("Hellow world");}
+impl Animal_2 for Cobra{
+    fn fazer_barulho(&self) -> &'static str {
+        todo!()
+    }
 }
-impl Developer for RustDev{
-    
-    fn new(awesome: bool) -> Self {
-        return RustDev { awesome:  awesome };
+fn retorna_animal(numero: f32) -> Box<dyn Animal_2>{
+    if numero < 0.0 {
+        return Box::new(Papagaio{})
+    }else{
+        return Box::new(Cobra{})
     }
-    
-    fn language(&self) -> &str {
-        return "Rust";
-    }
-    
-    fn say_hellow(&self){println!("println!(\"Hellow world\");");}
-}
-impl Developer for JavaDev{
-    fn new(awesome: bool) -> Self {
-        return JavaDev { awsome: awesome }
-    }
-    
-    fn language(&self) -> &str {
-        return "Java"
-    }
-
-    fn say_hellow(&self){println!("System.out.println(\"Hellow world\");");}
 }
 fn main() {
     // Usando o macro
@@ -69,9 +62,18 @@ fn main() {
     xy!(y => "Kaio");
     build_fn!(hey);
     hey();
-    let java_dev = JavaDev{
-        awsome: true
-    };
+
+    // struct JavaDev com o trait Developer
+    let java_dev = JavaDev::new(true);
     println!("{}", java_dev.language());
     java_dev.say_hellow();
+
+    // struct gato e cachorro com o trait latido
+    let cachorro = Cachorro{species: "Pastor alemão"};
+    let gato = Gato{cor: "Branco"};
+    latido_teste(cachorro);
+    latido_teste(gato);
+    
 }
+
+
