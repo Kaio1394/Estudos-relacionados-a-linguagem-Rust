@@ -3,7 +3,10 @@ mod dev_impl;
 mod animais;
 mod animal_2;
 mod adicionando_trait_a_uma_estrutura;
+mod trait_existente;
+
 use crate::adicionando_trait_a_uma_estrutura::*;
+use crate:: trait_existente::trait_existente::*;
 use crate::adicionando_trait_a_uma_estrutura::adicionando_trait::Somatorio;
 use crate::animais::animal::*;
 use crate::animal_2::animais_2::*;
@@ -65,6 +68,12 @@ fn main() {
 
     // Trait somatório send aplicado em uma estrutura do tipo Vec
     println!("Soma = {}", vetor.soma());
+
+    // Trait Add aplicado na estrutura Ponteiro
+    let p1 = Ponteiro{X: 1.0, Y: 5.6};
+    let p2 = Ponteiro{X: 5.1, Y: 10.6};
+    let p3 = p1 + p2;
+    println!("{:?}", p3);
 }
 
 
