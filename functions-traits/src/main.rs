@@ -2,6 +2,9 @@
 mod dev_impl;
 mod animais;
 mod animal_2;
+mod adicionando_trait_a_uma_estrutura;
+use crate::adicionando_trait_a_uma_estrutura::*;
+use crate::adicionando_trait_a_uma_estrutura::adicionando_trait::Somatorio;
 use crate::animais::animal::*;
 use crate::animal_2::animais_2::*;
 use crate::dev_impl::dev::*;
@@ -32,8 +35,6 @@ macro_rules! build_fn {
         }
     };
 }
-
-
 fn main() {
     // Usando o macro
     name!("Kaio");
@@ -53,7 +54,17 @@ fn main() {
     latido_teste(cachorro);
     latido_teste(gato);
     
+    // Função que tem como retorno um trait.
     println!("{}", retorna_animal(-1.1).fazer_barulho());
+    
+    let mut vetor: Vec<i32> = Vec::new();
+    vetor.push(5);
+    vetor.push(5);
+    vetor.push(5);
+    println!("{:?}", vetor);
+
+    // Trait somatório send aplicado em uma estrutura do tipo Vec
+    println!("Soma = {}", vetor.soma());
 }
 
 
