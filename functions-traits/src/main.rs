@@ -1,8 +1,9 @@
 #[allow(unused_imports)]
 mod dev_impl;
 mod animais;
-use crate::animais::*;
+mod animal_2;
 use crate::animais::animal::*;
+use crate::animal_2::animais_2::*;
 use crate::dev_impl::dev::*;
 // Macro
 // Em macros podemos ter tipos de parâmetro: 
@@ -32,29 +33,7 @@ macro_rules! build_fn {
     };
 }
 
-// Implementando uma função com o retoro de uma trait através do Box<dyn ...>
-struct Papagaio{}
-struct Cobra{}
-trait Animal_2{
-    fn fazer_barulho(&self) -> &'static str;
-}
-impl Animal_2 for Papagaio{
-    fn fazer_barulho(&self) -> &'static str {
-        todo!()
-    }
-}
-impl Animal_2 for Cobra{
-    fn fazer_barulho(&self) -> &'static str {
-        todo!()
-    }
-}
-fn retorna_animal(numero: f32) -> Box<dyn Animal_2>{
-    if numero < 0.0 {
-        return Box::new(Papagaio{})
-    }else{
-        return Box::new(Cobra{})
-    }
-}
+
 fn main() {
     // Usando o macro
     name!("Kaio");
@@ -74,6 +53,7 @@ fn main() {
     latido_teste(cachorro);
     latido_teste(gato);
     
+    println!("{}", retorna_animal(-1.1).fazer_barulho());
 }
 
 
