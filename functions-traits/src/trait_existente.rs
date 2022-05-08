@@ -7,7 +7,7 @@ pub mod trait_existente{
         pub Y: f32
     }
 
-    // Implementando o trait Add em um estrutura qualquer
+    // Implementando o trait Add em um estrutura criada(Ponteiro)
     impl Add for Ponteiro{
         type Output = Ponteiro;
 

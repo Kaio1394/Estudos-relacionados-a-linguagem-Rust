@@ -38,6 +38,27 @@ macro_rules! build_fn {
         }
     };
 }
+
+trait Dobro{
+    fn duplicar(&self) -> String;
+}
+impl Dobro for String {
+    fn duplicar(&self) -> String {
+        return format!("{0}-{0}", *self);
+    }
+}
+impl Dobro for i32{
+    fn duplicar(&self) -> String {
+        return format!("{}", *self * 2);
+    }
+}
+
+// fn dobrar<T: Dobro>(x: T){
+//     println!("{}", x.duplicar());
+// }
+fn dobrar(x: &dyn Dobro){
+    println!("{}", x.duplicar());
+}
 fn main() {
     // Usando o macro
     name!("Kaio");
@@ -74,6 +95,12 @@ fn main() {
     let p2 = Ponteiro{X: 5.1, Y: 10.6};
     let p3 = p1 + p2;
     println!("{:?}", p3);
+
+    // Aplicando a função dobrar
+    let inteiro = 10;
+    let texto: String = "Kaio".to_string();
+    dobrar(&texto);
+    dobrar(&inteiro);
 }
 
 
