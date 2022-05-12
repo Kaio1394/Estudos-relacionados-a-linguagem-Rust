@@ -1,3 +1,23 @@
+use std::vec;
+
+#[derive(Debug)]
+struct Person{
+    name: String
+}
+
+// definindo um tempo de vida para a referência Person usando o "'l" ou "'lifetime".
+// Significa que a referência Person vai ter o mesmo temp ode vida que a struct
+#[derive(Debug)]
+struct Dog<'lifetime>{
+    name: String,
+    owner: &'lifetime Person
+}
+
+impl Person {
+    fn get_name(&self) -> &String{
+        return &self.name;
+    }
+}
 fn main() {
     //________________________________________Ownership__________________________________________
     // Para tipos primitivos como i32, acontece um copy de i para j. 
@@ -24,5 +44,32 @@ fn main() {
     println!("{:?}", c); 
 
     //________________________________________Borrowing__________________________________________
+    // & serve para pegarmos emprestado a propriedade
+    // Após o uso a variáveis que pegou emprestado é destruida.(Após a variável referenciada for chamada)
+    // Para exemplificar melhor, coloca-se um 
 
-}
+    let mut a = 6;
+    {
+        let b = &mut a;
+        println!("{}", *b);
+        *b+=1;
+        println!("{}", *b);
+        *b+=1;
+        println!("{}", *b);
+    };
+    println!("{}", a);
+    let mut z = vec![1, 2, 3, 4];
+    for elem in &z {
+        println!("{}", elem);
+    }
+    //________________________________________Lifetimes__________________________________________
+    let p1 = Person{name: String::from("Kaio")};
+    let d1 = Dog{name: String::from("Estrela"), owner: &p1};
+
+    let mut j: &String;
+    {
+        let p2 = Person{name: String::from("Kaio")};
+        j = p1.get_name();
+    };
+    println!("{}", a);
+} 
