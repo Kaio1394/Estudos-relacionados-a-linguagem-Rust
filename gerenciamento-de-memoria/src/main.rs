@@ -1,4 +1,15 @@
 use std::vec;
+use std::rc::Rc;
+
+struct Car{
+    brand: Rc<String>
+}
+impl Car{
+    fn new(brand: Rc<String>) -> Car { return Car{ brand: brand}}
+    fn drive(&self){
+        println!("{} está dirigindo", &self.brand);
+    }
+}
 
 #[derive(Debug)]
 struct Person{
@@ -72,4 +83,14 @@ fn main() {
         j = p1.get_name();
     };
     println!("{}", a);
+
+    let brand = Rc::new(String::from("BMW"));
+    println!("Pointers: {}", Rc::strong_count(&brand));
+    {
+        let car = Car::new(brand.clone());
+        car.drive();
+        println!("Pointers: {}", Rc::strong_count(&brand));
+    }
+    println!("Meu carro é uma {}", brand);
+    println!("Pointers: {}", Rc::strong_count(&brand));
 } 
