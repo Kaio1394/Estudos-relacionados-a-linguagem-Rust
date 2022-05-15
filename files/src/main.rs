@@ -3,7 +3,7 @@ mod  manipulacao_arquivo;
 use std::fs::File;
 #[allow(unused_imports)]
 use std::io::{Write, Read};
-use std::fs::OpenOptions;
+use std::fs::{OpenOptions, remove_file, rename};
 
 use crate::manipulacao_arquivo::arquivo::*;
 
@@ -23,5 +23,12 @@ fn main() {
     // Lendo arquivo 
     let file_read = let_arquivo("src/example.txt");
     println!("{}", file_read);
+
+    // Renomeando arquivo
+    renomeando_arquivo("src/kaio.rs", "src/teste.rs");
+
+
+    // Removendo um arquivo
+    
 }
 

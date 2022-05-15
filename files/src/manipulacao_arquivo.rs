@@ -1,6 +1,7 @@
 #[allow(dead_code)]
 pub mod arquivo{
-    use std::io::Read;
+    use std::fs::rename;
+use std::io::Read;
     use std::fs::File;
     use std::io::Write;
     pub fn criacao_arquivo_rs(path: &'static str) -> File{
@@ -33,5 +34,14 @@ pub mod arquivo{
         let mut file = File::open(path).unwrap();
         file.read_to_string(&mut string_lida_arquivo).unwrap();
         return string_lida_arquivo;
+    }
+
+    pub fn renomeando_arquivo(path_atual: &'static str, path_novo: &'static str) -> bool{
+        if path_atual.is_empty() || path_novo.is_empty(){
+            return false;
+        }else {
+            rename(path_atual, path_novo).expect("Arquivo não encontrado");
+            return true;
+        }
     }
 }
