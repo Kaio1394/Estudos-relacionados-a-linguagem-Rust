@@ -1,4 +1,6 @@
+#[allow(dead_code)]
 pub mod arquivo{
+    use std::io::Read;
     use std::fs::File;
     use std::io::Write;
     pub fn criacao_arquivo_rs(path: &'static str) -> File{
@@ -25,5 +27,11 @@ pub mod arquivo{
         else{
             return File::create(path).expect("Criação do arquivo falhou");
         }
+    }
+    pub fn let_arquivo(path: &'static str) -> String{
+        let mut string_lida_arquivo = String::from(path);
+        let mut file = File::open(path).unwrap();
+        file.read_to_string(&mut string_lida_arquivo).unwrap();
+        return string_lida_arquivo;
     }
 }
