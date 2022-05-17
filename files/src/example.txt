@@ -22,4 +22,20 @@ println!("");println!("");println!("");println!("");fn main() {
    println!("");  
  }fn main() {
    println!("");  
+ }fn main() {
+   println!("");  
+ }fn main() {
+   println!("");  
+ }fn main() {
+   println!("");  
+ }fn main() {
+   println!("");  
+ }fn main() {
+   println!("");  
+ }fn main() {
+   println!("");  
+ }fn main() {
+   println!("");  
+ }fn main() {
+   println!("");  
  }

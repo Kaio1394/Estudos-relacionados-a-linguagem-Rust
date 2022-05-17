@@ -25,10 +25,7 @@ fn main() {
     println!("{}", file_read);
 
     // Renomeando arquivo
-    renomeando_arquivo("src/kaio.rs", "src/teste.rs");
-
-
-    // Removendo um arquivo
+    renomeando_arquivo("src/example.rs", "src/teste1.rs");
     
 }
 
