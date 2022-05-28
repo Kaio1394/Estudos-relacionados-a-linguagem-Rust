@@ -1,16 +1,18 @@
 #[allow(dead_code)]
 pub mod arquivo{
     use std::fs::rename;
-use std::io::{Read, self};
+    use std::io::{Read};
     use std::fs::File;
     use std::io::Write;
     use std::path::Path;
-    pub fn criacao_arquivo_rs(path: &'static str) -> File{
-        if path.is_empty() && !path.contains(".rs"){
-            return File::create("src/example.rs").expect("Criação do arquivo falhou");
+    
+    pub fn criacao_arquivo_rs(path: &'static str, extension: &'static str) -> File{
+        let path_completo = Path::new(path).join(extension);
+        if !path_completo.exists() || path.is_empty() || !path.ends_with(".rs"){
+            return File::create("src/default.rs").expect("Criação do arquivo falhou");
         }
         else{
-            return File::create(path).expect("Criação do arquivo falhou");
+            return File::create(path_completo).expect("Criação do arquivo falhou");
         }
     }
     
@@ -31,9 +33,7 @@ use std::io::{Read, self};
         }
     }
     pub fn let_arquivo(path: &'static str) -> String{
-        let path_arquivo = Path::new(path);
-
-        if !Path::exists(path_arquivo){
+        if !Path::exists(Path::new(path)){
             panic!("Path inválido!!!");   
         }
         else{
@@ -45,13 +45,11 @@ use std::io::{Read, self};
     }
 
     pub fn renomeando_arquivo(path_atual: &'static str, path_novo: &'static str){
-        let path1 = Path::new(path_atual);
-        let path2 = Path::new(path_novo);
-        if !Path::exists(&path1) && !Path::exists(&path2){
+        if !Path::exists(&Path::new(path_atual)) && !Path::exists(&Path::new(path_novo)){
             panic!("Path inválido!!!");      
         }else {
             rename(path_atual, path_novo).expect("Arquivo não encontrado");
         }
     }
-
+    
 }

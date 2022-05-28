@@ -3,7 +3,7 @@ mod  manipulacao_arquivo;
 use std::fs::File;
 #[allow(unused_imports)]
 use std::io::{Write, Read};
-use std::fs::{OpenOptions, remove_file, rename};
+use std::fs::{OpenOptions};
 
 use crate::manipulacao_arquivo::arquivo::*;
 
@@ -12,7 +12,7 @@ use crate::manipulacao_arquivo::arquivo::*;
 
 fn main() {
     //Criação de um arquivo txt ou rs
-    criacao_codigo_rust("fn main() {\n   println!(\"\");  \n }", criacao_arquivo_rs(""));
+    criacao_codigo_rust("fn main() {\n   println!(\"\");  \n }", criacao_arquivo_rs("", ".rs"));
     
     // Escrever em um arquivo repetidas vezes sem resetar o arquivo
     let mut file = OpenOptions::new().append(true)
@@ -25,7 +25,7 @@ fn main() {
     println!("{}", file_read);
 
     // Renomeando arquivo
-    renomeando_arquivo("src/example.rs", "src/teste1.rs");
+    renomeando_arquivo("src/default.rs", "src/teste1.rs");
     
 }
 
